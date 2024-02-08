@@ -71,8 +71,7 @@ class ProductItemDetails extends Component {
         similarProductsData: updatedSimilarProductsData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -89,7 +88,7 @@ class ProductItemDetails extends Component {
     <div className="products-details-failure-view">
       <img
         src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-error-view-img.png"
-        alt="error view"
+        alt="failure view"
         className="failure-view-image"
       />
       <h1 className="product-not-found-heading">Product Not Found</h1>
@@ -109,10 +108,7 @@ class ProductItemDetails extends Component {
   }
 
   onIncrementQuantity = () => {
-    const {quantity} = this.state
-    if (quantity > 1) {
-      this.setState(prevState => ({quantity: prevState.quantity + 1}))
-    }
+    this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
 
   renderProductDetailsView = () => {
